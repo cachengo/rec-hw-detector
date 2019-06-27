@@ -17,7 +17,7 @@ from hw_detector.nokia_hw_type import NokiaHWType
 class HWOE192U(NokiaHWType):
     def __init__(self):
         super(HWOE192U, self).__init__()
-        self.matches = {'Board Product' : 'AE-SER2U-A/AF1804.01'}
+        self.matches = {'Board Product' : 'AE-SER2U-A/AF1804.*'}
         self.hwtype = 'OE192U'
         self.productfamily = 'OE19'
         self.disk_map = {'os' : '%s/pci-0000:00:11.5-ata-3' %self.by_path,
