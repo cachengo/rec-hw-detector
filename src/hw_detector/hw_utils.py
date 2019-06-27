@@ -30,14 +30,14 @@ def get_match(info):
 
     return 'Unknown'
 
-def get_info(ipmi_addr=None, ipmi_user=None, ipmi_pass=None, detect_virtual=True):
+def get_info(ipmi_addr=None, ipmi_user=None, ipmi_pass=None, ipmi_priv_level='ADMINISTRATOR', detect_virtual=True):
     global info
     if is_virtual(detect_virtual):
         return {'Board Product' : 'VIRTUAL'}
     if info.get(ipmi_addr, False):
         return info[ipmi_addr]
     if ipmi_addr:
-        info[ipmi_addr] = hw_ipmi_lib.get_ipmi_info(ipmi_addr, ipmi_user, ipmi_pass)
+        info[ipmi_addr] = hw_ipmi_lib.get_ipmi_info(ipmi_addr, ipmi_user, ipmi_pass, ipmi_priv_level)
     else:
         return hw_ipmi_lib.get_local_ipmi_info()
     if ipmi_addr and not info.get(ipmi_addr):
@@ -45,8 +45,8 @@ def get_info(ipmi_addr=None, ipmi_user=None, ipmi_pass=None, detect_virtual=True
 
     return info[ipmi_addr]
 
-def get_type(ipmi_addr=None, ipmi_user=None, ipmi_pass=None, detect_virtual=True):
-    info = get_info(ipmi_addr, ipmi_user, ipmi_pass, detect_virtual)
+def get_type(ipmi_addr=None, ipmi_user=None, ipmi_pass=None, ipmi_priv_level='ADMINISTRATOR', detect_virtual=True):
+    info = get_info(ipmi_addr, ipmi_user, ipmi_pass, ipmi_priv_level, detect_virtual)
     if not info:
         return 'Unknown'
 

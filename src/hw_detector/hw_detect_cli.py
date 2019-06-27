@@ -32,8 +32,9 @@ def remote_dump(args):
     ip = args.ip
     user = args.user
     passw = args.passwd
+    priv = args.priv
     try:
-        data = hw.get_hw_data(ip, user, passw, False)
+        data = hw.get_hw_data(ip, user, passw, priv, False)
     except HWException as e:
         data = "Detect failed: {}".format(str(e))
     dump_data(data)
@@ -47,7 +48,7 @@ def main():
     remote_group.add_argument('--ip', type=str, required=True, help='IP')
     remote_group.add_argument('--user', type=str, required=True, help='User')
     remote_group.add_argument('--passwd', type=str, required=True, help='Password')
-
+    remote_group.add_argument('--priv', type=str, required=False, default='ADMINISTRATOR', help='Privilege level (default: ADMINISTRATOR)')
     local_group.set_defaults(func=local_dump)
     remote_group.set_defaults(func=remote_dump)
 

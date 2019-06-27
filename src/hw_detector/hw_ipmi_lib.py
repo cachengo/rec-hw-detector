@@ -17,11 +17,11 @@ import os
 
 from hw_detector.hw_exception import HWException
 
-def get_ipmi_info(ipmi_addr, ipmi_user, ipmi_pass):
-    command = "ipmitool -I lanplus -H %s  -U %s -P %s fru print 0" % (ipmi_addr, ipmi_user, ipmi_pass)
+def get_ipmi_info(ipmi_addr, ipmi_user, ipmi_pass, ipmi_priv_level='ADMINISTRATOR'):
+    command = "ipmitool -I lanplus -H %s  -U %s -P %s -L %s fru print 0" % (ipmi_addr, ipmi_user, ipmi_pass, ipmi_priv_level)
     info = ipmi_info(command)
 
-    command = "ipmitool -I lanplus -H %s  -U %s -P %s lan print" % (ipmi_addr, ipmi_user, ipmi_pass)
+    command = "ipmitool -I lanplus -H %s  -U %s -P %s -L %s lan print" % (ipmi_addr, ipmi_user, ipmi_pass, ipmi_priv_level)
     info.update(ipmi_info(command))
 
     return info
