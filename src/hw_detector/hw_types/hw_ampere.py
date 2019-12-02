@@ -14,9 +14,9 @@
 
 from hw_detector.hw_type import HWType
 
-class HWDELL(HWType):
+class HWAMPERE(HWType):
     def __init__(self):
-        super(HWDELL, self).__init__()
+        super(HWAMPERE, self).__init__()
         self.matches = {'Board Product' : 'FALCON'}
         self.hwtype = 'AMPERE'
         self.vendor_name = 'AMPERE'

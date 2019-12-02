@@ -30,7 +30,7 @@ def _load_ipmi_drivers():
     with open(os.devnull, 'w') as devnull:
         subprocess.call('modprobe ipmi_msghandler', stderr=devnull, shell=True)
         subprocess.call('modprobe ipmi_devintf', stderr=devnull, shell=True)
-        subprocess.call('modprobe ipmi_si', stderr=devnull, shell=True)
+        subprocess.call('modprobe ipmi_ssif', stderr=devnull, shell=True)
 
 def get_local_ipmi_info():
     _load_ipmi_drivers()
